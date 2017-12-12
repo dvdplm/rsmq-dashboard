@@ -1,0 +1,10 @@
+[package]
+name = "rsmq-dashboard"
+version = "0.1.0"
+authors = ["David Palm <dvdplm@gmail.com>"]
+
+[dependencies]
+tui = { git = "https://github.com/fdehau/tui-rs" }
+termion = { git = "https://github.com/ticki/termion" }
+rsmq = { path = "../rsmq-rust" }
+chrono = "0.4"
