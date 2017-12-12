@@ -167,6 +167,7 @@ dependencies = [
 [[package]]
 name = "rsmq"
 version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "r2d2 0.8.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "r2d2_redis 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -180,7 +181,7 @@ name = "rsmq-dashboard"
 version = "0.1.0"
 dependencies = [
  "chrono 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "rsmq 0.2.0",
+ "rsmq 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "termion 1.5.1 (git+https://github.com/ticki/termion)",
  "tui 0.1.3 (git+https://github.com/fdehau/tui-rs)",
 ]
@@ -309,6 +310,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum redis 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)" = "02a92e223490cc63d9230c4cdf132a48ce154ab1e063558e3841e219c2ea3f91"
 "checksum redox_syscall 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)" = "ab105df655884ede59d45b7070c8a65002d921461ee813a024558ca16030eea0"
 "checksum redox_termios 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)" = "7e891cfe48e9100a70a3b6eb652fef28920c117d366339687bd5576160db0f76"
+"checksum rsmq 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "a88eda5958f8d27f77ef7a36618d9680a235b5d80aa21f019aa9c0d889ad5a4c"
 "checksum scheduled-thread-pool 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "1a2ff3fc5223829be817806c6441279c676e454cc7da608faf03b0ccc09d3889"
 "checksum sha1 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "cc30b1e1e8c40c121ca33b86c23308a090d19974ef001b4bf6e61fd1a0fb095c"
 "checksum termion 1.5.1 (git+https://github.com/ticki/termion)" = "<none>"

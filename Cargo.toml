@@ -2,9 +2,13 @@
 name = "rsmq-dashboard"
 version = "0.1.0"
 authors = ["David Palm <dvdplm@gmail.com>"]
+description = "A terminal UI to inspect RSMQ queues"
+keywords = ["rsmq", "terminal", "dashboard", "redis", "queues", "ncurses"]
+license = "MIT"
+repository = "https://github.com/dvdplm/rsmq-dashboard"
 
 [dependencies]
 tui = { git = "https://github.com/fdehau/tui-rs" }
 termion = { git = "https://github.com/ticki/termion" }
-rsmq = { path = "../rsmq-rust" }
+rsmq = "0.2"
 chrono = "0.4"
