@@ -4,5 +4,7 @@ Rsmq-dashboard is a terminal UI to inspect RSMQ queues written in Rust. Develope
 
 Your queues are listed on the left and the queue attributes of the selected queue are shown on the right. Simple, effective! :)
 
+To quit the dashboard, press `q`.
+
 
 
