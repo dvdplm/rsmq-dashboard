@@ -2,6 +2,7 @@ extern crate termion;
 extern crate tui;
 extern crate rsmq;
 extern crate chrono;
+extern crate clap;
 
 use std::io;
 use std::thread;
@@ -18,6 +19,7 @@ use tui::layout::{Direction, Group, Rect, Size};
 use tui::style::{Color, Modifier, Style};
 
 use chrono::NaiveDateTime;
+use clap::{Arg};
 
 struct App {
     rsmq: rsmq::Rsmq,
@@ -29,8 +31,8 @@ struct App {
 }
 
 impl App {
-    fn new() -> App {
-        let rsmq = rsmq::Rsmq::new("redis://127.0.0.1/", "rsmq").expect("Can't instantiate RSMQ");
+    fn new(redis_url: &str, redis_ns: &str) -> App {
+        let rsmq = rsmq::Rsmq::new(redis_url, redis_ns).expect("Can't instantiate RSMQ");
         let (qnames, q) = Self::fetch_queue_data(&rsmq, 0);
 
         App {
@@ -73,6 +75,26 @@ enum Event {
 
 
 fn main() {
+    // Parse command line args
+    let cli_args = clap::App::new("RSMQ dashboard")
+        .version("0.1")
+        .about("Terminal UI for your RSMQ queues")
+        .arg(Arg::with_name("namespace")
+            .short("n")
+            .long("namespace")
+            .value_name("REDIS_NS")
+            .help("key used to namespace the RSMQ data in Redis")
+        )
+        .arg(Arg::with_name("redis-url")
+            .short("r")
+            .long("redis-url")
+            .value_name("REDIS_URL")
+            .help("Redis connection string on the format redis://HOST[:PORT][?password=PASSWORD[&db=DATABASE]]")
+        )
+        .get_matches();
+    let redis_ns = cli_args.value_of("namespace").unwrap_or("rsmq");
+    let redis_url = cli_args.value_of("redis-url").unwrap_or("redis://127.0.0.1:8909");
+
     // Terminal initialization
     let backend = MouseBackend::new().unwrap();
     let mut terminal = Terminal::new(backend).unwrap();
@@ -101,7 +123,7 @@ fn main() {
     });
 
     // App
-    let mut app = App::new();
+    let mut app = App::new(redis_url, redis_ns);
 
     // First draw call
     terminal.clear().unwrap();
@@ -120,6 +142,8 @@ fn main() {
         match evt {
             Event::Input(input) => match input {
                 event::Key::Char('q') => {
+                    terminal.clear().expect("Could not clear terminal");
+                    terminal.show_cursor().expect("Could not show cursor");
                     break;
                 }
                 event::Key::Down => {
